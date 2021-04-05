@@ -23,7 +23,7 @@
 <h4>Admins user:</h4>
 <p>user: admin@admin.com<br/>pass: admin</p>
 <p></p>
-<h3>Posts Importer:</h3>
+<h3>Post Importer:</h3>
 <p>Config your server to run 'php artisan schedule:run' every minute OR</p>
 <p>Execute in command line '<strong>php artisan GetExternalPosts</strong>'</p>
 <p></p>
