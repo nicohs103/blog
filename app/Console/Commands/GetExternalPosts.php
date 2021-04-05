@@ -3,10 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Post;
-use Carbon\Carbon;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Http;
-
+use GuzzleHttp\Client;
 
 class GetExternalPosts extends Command
 {
@@ -62,13 +60,10 @@ class GetExternalPosts extends Command
     private function guzzleGetPosts()
     {
         $externalBlogUrl = config('helper.EXTERNAL_BLOG_URL');
-        $response = Http::get($externalBlogUrl);
+        $client = new Client(['base_uri' => $externalBlogUrl]);
+        $response = $client->request('GET', '/posts');
 
-        if ($response->successful()) {
-            return json_decode($response->body());
-        }
-
-        return;
+        return json_decode($response->getBody());
     }
 
     /**
